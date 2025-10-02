@@ -1,0 +1,33 @@
+#/run/numberOfThreads 4
+/run/initialize
+/analysis/setFileName data/20Gev.root
+/analysis/openFile
+/control/execute /Users/pierluigifedeli/OREO_2025/B4/B4c/macros/beam20.mac
+
+/analysis/setFileName data/40Gev.root
+/analysis/openFile
+/control/execute /Users/pierluigifedeli/OREO_2025/B4/B4c/macros/beam40.mac
+
+/analysis/setFileName data/60Gev.root
+/analysis/openFile
+/control/execute /Users/pierluigifedeli/OREO_2025/B4/B4c/macros/beam60.mac
+
+/analysis/setFileName data/100Gev.root
+/analysis/openFile
+/control/execute /Users/pierluigifedeli/OREO_2025/B4/B4c/macros/beam100.mac
+
+/analysis/setFileName data/120Gev.root
+/analysis/openFile
+/control/execute /Users/pierluigifedeli/OREO_2025/B4/B4c/macros/beam120.mac
+
+/analysis/setFileName data/160Gev.root
+/analysis/openFile
+/control/execute /Users/pierluigifedeli/OREO_2025/B4/B4c/macros/beam160.mac
+
+/analysis/setFileName data/180Gev.root
+/analysis/openFile
+/control/execute /Users/pierluigifedeli/OREO_2025/B4/B4c/macros/beam180.mac
+
+/analysis/setFileName data/200Gev.root
+/analysis/openFile
+/control/execute /Users/pierluigifedeli/OREO_2025/B4/B4c/macros/beam200.mac
