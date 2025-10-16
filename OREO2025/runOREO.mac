@@ -2,32 +2,39 @@
 /run/initialize
 /analysis/setFileName data/20Gev.root
 /analysis/openFile
-/control/execute /Users/pierluigifedeli/OREO_2025/B4/B4c/macros/beam20.mac
+/control/execute /Users/pierluigifedeli/Simulations/OREO2025/macros/beam20.mac
 
 /analysis/setFileName data/40Gev.root
 /analysis/openFile
-/control/execute /Users/pierluigifedeli/OREO_2025/B4/B4c/macros/beam40.mac
+/control/execute /Users/pierluigifedeli/Simulations/OREO2025/macros/beam40.mac
+/run/beamOn 1
 
 /analysis/setFileName data/60Gev.root
 /analysis/openFile
-/control/execute /Users/pierluigifedeli/OREO_2025/B4/B4c/macros/beam60.mac
+/control/execute /Users/pierluigifedeli/Simulations/OREO2025/macros/beam60.mac
+/run/beamOn 1
 
 /analysis/setFileName data/100Gev.root
 /analysis/openFile
-/control/execute /Users/pierluigifedeli/OREO_2025/B4/B4c/macros/beam100.mac
+/control/execute /Users/pierluigifedeli/Simulations/OREO2025/macros/beam100.mac
+/run/beamOn 1
 
 /analysis/setFileName data/120Gev.root
 /analysis/openFile
-/control/execute /Users/pierluigifedeli/OREO_2025/B4/B4c/macros/beam120.mac
+/control/execute /Users/pierluigifedeli/Simulations/OREO2025/macros/beam120.mac
+/run/beamOn 1
 
 /analysis/setFileName data/160Gev.root
 /analysis/openFile
-/control/execute /Users/pierluigifedeli/OREO_2025/B4/B4c/macros/beam160.mac
+/control/execute /Users/pierluigifedeli/Simulations/OREO2025/macros/beam160.mac
+/run/beamOn 1
 
 /analysis/setFileName data/180Gev.root
 /analysis/openFile
-/control/execute /Users/pierluigifedeli/OREO_2025/B4/B4c/macros/beam180.mac
+/control/execute /Users/pierluigifedeli/Simulations/OREO2025/macros/beam180.mac
+/run/beamOn 1
 
 /analysis/setFileName data/200Gev.root
 /analysis/openFile
-/control/execute /Users/pierluigifedeli/OREO_2025/B4/B4c/macros/beam200.mac
+/control/execute /Users/pierluigifedeli/Simulations/OREO2025/macros/beam200.mac
+/run/beamOn 1

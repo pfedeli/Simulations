@@ -10,5 +10,3 @@
 /gps/ang/rot2 0 -1  0
 /gps/ang/sigma_x 79.24E-6 rad
 /gps/ang/sigma_y 101.13E-6 rad
-
-/run/beamOn 1000

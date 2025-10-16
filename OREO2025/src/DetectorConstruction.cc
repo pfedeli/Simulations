@@ -75,6 +75,15 @@ namespace B4c
     nistManager->FindOrBuildMaterial("G4_AIR");
     nistManager->FindOrBuildMaterial("G4_Si");
 
+    auto elH = nistManager->FindOrBuildElement("H");
+    auto elC = nistManager->FindOrBuildElement("C");
+    auto elO = nistManager->FindOrBuildElement("O");
+
+    // PLA: (C3H4O2)n, ρ ≈ 1.24 g/cm3, frazioni in massa: C 0.50, H 0.0556, O 0.4444
+    auto PLA = new G4Material("PLA", 1.24 * g / cm3, 3, kStateSolid);
+    PLA->AddElement(elC, 0.50);
+    PLA->AddElement(elH, 0.0556);
+    PLA->AddElement(elO, 0.4444);
     // Liquid argon material
     G4double a; // mass of a mole;
     G4double z; // z=mean number of protons;
@@ -111,6 +120,7 @@ namespace B4c
     auto absorberMaterial = G4Material::GetMaterial("G4_PbWO4");
     auto gapMaterial = G4Material::GetMaterial("G4_AIR");
     auto teleMaterial = G4Material::GetMaterial("G4_Si");
+    auto holderMaterial = G4Material::GetMaterial("PLA");
 
     if (!defaultMaterial || !absorberMaterial || !gapMaterial || !teleMaterial)
     {
@@ -135,35 +145,34 @@ namespace B4c
                                      "World",         // its name
                                      nullptr,         // its mother  volume
                                      false,           // no boolean operation
-                                     100,               // copy number
+                                     100,             // copy number
                                      fCheckOverlaps); // checking overlaps
 
-
-    //tele
+    // tele
     auto teleS = new G4Box("tele", teleSize.x() / 2, teleSize.y() / 2, teleSize.z() / 2);
 
-    auto teleLV = new G4LogicalVolume(teleS,         // its solid
-                                      teleMaterial,   // its material
-                                      "tele");        // its name
+    auto teleLV = new G4LogicalVolume(teleS,        // its solid
+                                      teleMaterial, // its material
+                                      "tele");      // its name
 
-    auto telePV1 = new G4PVPlacement(nullptr,         // no rotation
-                                    G4ThreeVector(0, 0 , 10. * cm),
-                                    teleLV,         // its logical volume
-                                    "tele1",         // its name
-                                    worldLV,         // its mother  volume
-                                    false,           // no boolean operation
-                                    200,               // copy number
-                                    fCheckOverlaps); // checking overlaps
+    auto telePV1 = new G4PVPlacement(nullptr, // no rotation
+                                     G4ThreeVector(0, 0, 10. * cm),
+                                     teleLV,          // its logical volume
+                                     "tele1",         // its name
+                                     worldLV,         // its mother  volume
+                                     false,           // no boolean operation
+                                     200,             // copy number
+                                     fCheckOverlaps); // checking overlaps
 
-    auto telePV2 = new G4PVPlacement(nullptr,         // no rotation
-                                    G4ThreeVector(0, 0 , 254.5 * cm),
-                                    teleLV,         // its logical volume
-                                    "tele2",         // its name
-                                    worldLV,         // its mother  volume
-                                    false,           // no boolean operation
-                                    201,               // copy number
-                                    fCheckOverlaps); // checking overlaps
-                                        
+    auto telePV2 = new G4PVPlacement(nullptr, // no rotation
+                                     G4ThreeVector(0, 0, 254.5 * cm),
+                                     teleLV,          // its logical volume
+                                     "tele2",         // its name
+                                     worldLV,         // its mother  volume
+                                     false,           // no boolean operation
+                                     201,             // copy number
+                                     fCheckOverlaps); // checking overlaps
+
     //
     // Calorimeter
     //
@@ -210,10 +219,29 @@ namespace B4c
                         PWO_LV_down,
                         "PWO",
                         worldLV,
-                        false, i+9, fCheckOverlaps);
+                        false, i + 9, fCheckOverlaps);
     }
 
     // layer down
+
+    auto holderfront = new G4Box("holderfront", 7.5 * cm / 2, 7.5 * cm / 2, 0.75 * cm / 2);
+    auto holderfront_LV = new G4LogicalVolume(holderfront, holderMaterial, "holderfront_LV");
+    auto sipmfront = new G4Box("sipmfront", 7.5 * cm / 2, 7.5 * cm / 2, 0.25 * cm / 2);
+    auto sipmfront_LV = new G4LogicalVolume(sipmfront, teleMaterial, "sipmfront_LV");
+
+    new G4PVPlacement(nullptr,
+                      G4ThreeVector(0, 0, zOreo - 0.25 * cm / 2),
+                      sipmfront_LV,
+                      "sipmfront_PV",
+                      worldLV,
+                      false, 60, fCheckOverlaps);
+
+    new G4PVPlacement(nullptr,
+                      G4ThreeVector(0, 0, zOreo - 1 * cm / 2),
+                      holderfront_LV,
+                      "holderfront_PV",
+                      worldLV,
+                      false, 61, fCheckOverlaps);
 
     //
     // Visualization attributes
@@ -222,6 +250,8 @@ namespace B4c
     PWO_LV_up->SetVisAttributes(G4VisAttributes(G4Colour::Blue()));
     PWO_LV_down->SetVisAttributes(G4VisAttributes(G4Colour::Red()));
     teleLV->SetVisAttributes(G4VisAttributes(G4Colour::Green()));
+    sipmfront_LV->SetVisAttributes(G4VisAttributes(G4Colour::White()));
+    holderfront_LV->SetVisAttributes(G4VisAttributes(G4Colour::Yellow()));
 
     //
     // Always return the physical World
