@@ -154,7 +154,7 @@ namespace B4c
     auto teleLV = new G4LogicalVolume(teleS,        // its solid
                                       teleMaterial, // its material
                                       "tele");      // its name
-
+    /*
     auto telePV1 = new G4PVPlacement(nullptr, // no rotation
                                      G4ThreeVector(0, 0, 10. * cm),
                                      teleLV,          // its logical volume
@@ -172,7 +172,7 @@ namespace B4c
                                      false,           // no boolean operation
                                      201,             // copy number
                                      fCheckOverlaps); // checking overlaps
-
+    */
     //
     // Calorimeter
     //
@@ -228,7 +228,7 @@ namespace B4c
     auto holderfront_LV = new G4LogicalVolume(holderfront, holderMaterial, "holderfront_LV");
     auto sipmfront = new G4Box("sipmfront", 7.5 * cm / 2, 7.5 * cm / 2, 0.25 * cm / 2);
     auto sipmfront_LV = new G4LogicalVolume(sipmfront, teleMaterial, "sipmfront_LV");
-
+    /*
     new G4PVPlacement(nullptr,
                       G4ThreeVector(0, 0, zOreo - 0.25 * cm / 2),
                       sipmfront_LV,
@@ -242,7 +242,7 @@ namespace B4c
                       "holderfront_PV",
                       worldLV,
                       false, 61, fCheckOverlaps);
-
+*/
     //
     // Visualization attributes
     //
