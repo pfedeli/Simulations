@@ -14,4 +14,4 @@
 /gps/ang/sigma_y 161.60E-6 rad
 
 # ---- Scan energia: 10, 12.5, 15, 17.5, 20, 22.5, 25 GeV ----
-/control/loop E 92 120 2 one_energy.mac
+/control/loop ../one_energy.mac E 92 120 2

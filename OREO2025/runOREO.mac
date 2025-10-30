@@ -3,6 +3,7 @@
 /analysis/setFileName data/20Gev.root
 /analysis/openFile
 /control/execute /Users/pierluigifedeli/Simulations/OREO2025/macros/beam20.mac
+/run/beamOn 1
 
 /analysis/setFileName data/40Gev.root
 /analysis/openFile
