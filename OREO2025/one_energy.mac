@@ -1,6 +1,6 @@
 # imposta energia
 /gps/energy {E} GeV
-/analysis/setFileName data/{E}GeV.root
+/analysis/setFileName data/sim_{E}GeV.root
 /analysis/openFile
 # run
-/run/beamOn 10000
+/run/beamOn 5000
